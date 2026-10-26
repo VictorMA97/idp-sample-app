@@ -7,13 +7,13 @@ name: ci
 
 on:
   push:
-    branches: [main]
+    branches: [master]
     paths-ignore:
       - "chart/values-dev.yaml"
       - "chart/values-prod.yaml"
       - "**.md"
   pull_request:
-    branches: [main]
+    branches: [master]
 
 # Por defecto, sin permisos. Cada job pide solo lo que necesita.
 permissions: {}
@@ -92,12 +92,12 @@ jobs:
           severity: CRITICAL,HIGH
           ignore-unfixed: true
 
-  # En main, el flujo se divide en tres jobs con permisos distintos para aislar a Trivy
+  # En master, el flujo se divide en tres jobs con permisos distintos para aislar a Trivy
   # (tercero que sufrió un compromiso en 2026) de la identidad de firma y de los permisos de escritura:
   #   build (packages: write) -> scan (packages: read) -> sign (packages: write + id-token: write)
 
   build:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     needs: test
     runs-on: ubuntu-24.04
     permissions:
@@ -229,5 +229,5 @@ jobs:
           git add chart/values-dev.yaml
           git diff --cached --quiet && { echo "Sin cambios que desplegar"; exit 0; }
           git commit -m "chore(dev): desplegar ${TAG} [skip ci]"
-          git pull --rebase origin main
-          git push origin HEAD:main
+          git pull --rebase origin master
+          git push origin HEAD:master
