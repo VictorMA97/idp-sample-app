@@ -47,7 +47,7 @@ jobs:
         run: pip install -r requirements-dev.txt
 
       - name: Tests
-        run: pytest -q
+        run: python -m pytest -q
 
       # helm viene preinstalado en los runners de GitHub
       - name: Lint y render del chart
