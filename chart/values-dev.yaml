@@ -1,0 +1,7 @@
+replicaCount: 1
+env: dev
+ingress:
+  host: sample-app.dev.localtest.me
+image:
+  tag: ""
+  digest: ""
