@@ -3,6 +3,6 @@ env: dev
 ingress:
   host: sample-app.dev.localtest.me
 image:
-  tag: "sha-647b68e"
-  digest: "sha256:688afa4517ed8b3a40badd15cce7d8dcf2a45a3f972c0ca55135e37d0fb32f69"
+  tag: "sha-4530050"
+  digest: "sha256:7ac27a5bd9dd3f2f77370f5fb5ad749832d3a436e1091babf3fb3f0541e030f8"
   repository: ghcr.io/victorma97/idp-sample-app
